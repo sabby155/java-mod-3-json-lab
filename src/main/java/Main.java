@@ -1,10 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,6 +31,7 @@ public class Main {
             //restore from the file you might have saved from a previous run of your program.
             System.out.println("Reading file...");
             System.out.println(readFromFile("person.data", true));
+
 
             initializeThreeOptionsMenu(personList);
 
@@ -88,9 +86,13 @@ public class Main {
 
     private static void printPeople() throws IOException {
         //Print everyone in the persons list
-        personList.forEach(person-> {
-            System.out.println("Person: " + person.getName());
-        });
+        if(personList.size() > 0) {
+            personList.forEach(person-> {
+                System.out.println("Person: " + person.getName());
+            });
+        } else {
+            System.out.println("There are no people on your list.");
+        }
 
         //Return the user to the 3 options from before.
         initializeThreeOptionsMenu(personList);
